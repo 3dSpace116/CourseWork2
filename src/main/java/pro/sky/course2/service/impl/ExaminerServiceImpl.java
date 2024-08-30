@@ -27,10 +27,10 @@ public class ExaminerServiceImpl implements ExaminerService {
         }
 
         Set<Question>set=new HashSet<>();
-        while (set.size()<amount){set.add(questionService.getRandomQuestoin());}
+        while (set.size()<amount){set.add(questionService.getRandomQuestion());}
         return set;
 
-       /* Stream.generate(questionService::getRandomQuestoin).
+       /* Stream.generate(questionService::getRandomQuestion).
                 distinct().
                 limit(amount).
                 toList();*/

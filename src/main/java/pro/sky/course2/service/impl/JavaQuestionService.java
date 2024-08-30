@@ -42,7 +42,7 @@ public class JavaQuestionService implements QuestionService {
     }
 
     @Override
-    public Question getRandomQuestoin() {
+    public Question getRandomQuestion() {
         int index = random.nextInt(questions.size());
         return questions.get(index);
     }
