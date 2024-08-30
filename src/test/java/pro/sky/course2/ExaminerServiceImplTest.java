@@ -24,28 +24,28 @@ public class ExaminerServiceImplTest {
     @InjectMocks
     ExaminerServiceImpl examinerServiceImpl;
 
-    @BeforeEach
-    void init() {
-        when(javaQuestionService.getAll()).thenReturn(List.of(
-                new Question("что говорит кошка?", "мяу"),
-                new Question("что говорит собака?", "гав"),
-                new Question("что говорит попугай?", "мяу-гав")));
 
-        when(javaQuestionService.getRandomQuestion()).thenReturn(
-                new Question("что говорит кошка?", "мяу")
-        );
-    }
 
 
     @Test
     @DisplayName("Проверка выброса исключения")
-    void exceptionTest() throws Exception {
+    void exceptionTest() throws Exception {        when(javaQuestionService.getAll()).thenReturn(List.of(
+            new Question("что говорит кошка?", "мяу"),
+            new Question("что говорит собака?", "гав"),
+            new Question("что говорит попугай?", "мяу-гав")));
         Assertions.assertThrows(NotEnoughQuestionsException.class, () -> examinerServiceImpl.getQuestions(4));
     }
 
     @Test
     @DisplayName("Тест выдачи вопросов")
     void examinerServiceTest() {
+        when(javaQuestionService.getAll()).thenReturn(List.of(
+                new Question("что говорит кошка?", "мяу"),
+                new Question("что говорит собака?", "гав"),
+                new Question("что говорит попугай?", "мяу-гав")));
+
+        when(javaQuestionService.getRandomQuestion()).thenReturn(
+                new Question("что говорит кошка?", "мяу"));
         String allQuestions = examinerServiceImpl.getQuestions(1).toString();
         Assertions.assertTrue(allQuestions.contains("что говорит кошка?"));
 
